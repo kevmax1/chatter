@@ -1,0 +1,27 @@
+<div class="chat">
+  <div class="chat-header">
+    <h1>Chatter</h1>
+  </div>
+  <div class="chat-history">
+    <ion-content>
+      <ul>
+          <li *ngFor="let item of items | async" [ngClass]="{'chat-item-me' : (item.pseudo != pseudo), 'chat-item-other':(item.pseudo == pseudo)}">
+            <div class="message">
+              <span class="message-user-name"><a href="#">{{item.pseudo}}</a></span>
+              <p class="message-text">{{item.message}}</p>
+            </div>
+          </li>
+      </ul>
+    </ion-content>
+  </div>
+  <div class="chat-controls">
+    <textarea class="chat-controls-textarea" *ngIf="!pseudo" rows="1" [(ngModel)]="field" placeholder="Votre pseudo..."></textarea>
+    <a href="#" class="chat-controls-btn send" *ngIf="!pseudo" (click)="login()">
+      <ion-icon name="send"></ion-icon>
+    </a>
+    <textarea class="chat-controls-textarea" rows="2"  *ngIf="pseudo" [(ngModel)]="field" placeholder="Votre message..."></textarea>
+    <a href="#" class="chat-controls-btn send" *ngIf="pseudo" (click)="send()">
+      <ion-icon name="send"></ion-icon>
+    </a>
+  </div>
+</div>
